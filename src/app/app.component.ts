@@ -1,25 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 // import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   title = 'Learn!';
   courses$: Observable<any[]>;
+  subscription: Subscription;
+  courses = [];
+  
   // courses: AngularFireList<any[]>;
   /**
    * he $ sign doesn't affect anything, but is a standard to
    * mark a variable as an Observable
    */
   constructor(db: AngularFireDatabase) {
-    
-    this.courses$ = db.list('courses').valueChanges();
-
+    // this.courses$ = db.list('courses').valueChanges();
+    this.subscription = db.list('courses').valueChanges().subscribe(
+      values =>{
+        this.courses = values;
+        console.log(values);
+      }
+    );
+    // this.subscription = this.courses$.subscribe();
     // this.courses.snapshotChanges(['child_added'])
     //   .subscribe(actions => {
     //     actions.forEach(action => {
@@ -29,5 +37,9 @@ export class AppComponent {
     //     });
     //     console.log(actions);
     //   });
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 }
