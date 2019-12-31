@@ -5,12 +5,14 @@
 export const environment = {
   production: false,
   firebase:{
-    apiKey: "AIzaSyCrT-65bghrNtNEfqtKoLAdAp5_Ig9fx3A",
-    authDomain: "fir-demo-c1796.firebaseapp.com",
-    databaseURL: "https://fir-demo-c1796.firebaseio.com",
-    projectId: "fir-demo-c1796",
-    storageBucket: "fir-demo-c1796.appspot.com",
-    messagingSenderId: "276652148319"
+    apiKey: 'AIzaSyCqmV-A83E_JsMVrRRZ-KrdRC_nzUcZPbg',
+    authDomain: 'melloapp-d2b7a.firebaseapp.com',
+    databaseURL: 'https://melloapp-d2b7a.firebaseio.com',
+    projectId: 'melloapp-d2b7a',
+    storageBucket: 'melloapp-d2b7a.appspot.com',
+    messagingSenderId: '560275448474',
+    appId: '1:560275448474:web:1bed54ebbd591ae451b523',
+    measurementId: 'G-N7X8S4LVX1'
   }
 };
 
