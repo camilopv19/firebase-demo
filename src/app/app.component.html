@@ -1,9 +1,12 @@
 <button (click)="ngOnDestroy()">Go Offline</button>
 <ul>
-  <li *ngFor="let c of courses ">
+  <!-- Sync -->
+  <li *ngFor="let c of courses "> 
     {{ c }}
   </li>
   <!-- <li *ngFor="let course of courses$ | async">
     {{ course }}
   </li> -->
 </ul>
+
+<p>{{ courses[0] }}</p>

@@ -8,38 +8,20 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnDestroy {
-  title = 'Learn!';
-  courses$: Observable<any[]>;
+export class AppComponent {
   subscription: Subscription;
   courses = [];
-  
-  // courses: AngularFireList<any[]>;
   /**
-   * he $ sign doesn't affect anything, but is a standard to
+   * The $ sign doesn't affect anything, but is a standard to
    * mark a variable as an Observable
    */
   constructor(db: AngularFireDatabase) {
-    // this.courses$ = db.list('courses').valueChanges();
     this.subscription = db.list('courses').valueChanges().subscribe(
       values =>{
         this.courses = values;
         console.log(values);
       }
     );
-    // this.subscription = this.courses$.subscribe();
-    // this.courses.snapshotChanges(['child_added'])
-    //   .subscribe(actions => {
-    //     actions.forEach(action => {
-    //       console.log(action.type);
-    //       console.log(action.key);
-    //       console.log(action.payload.val());
-    //     });
-    //     console.log(actions);
-    //   });
   }
 
-  ngOnDestroy(){
-    this.subscription.unsubscribe();
-  }
 }
