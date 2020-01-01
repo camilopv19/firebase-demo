@@ -3,10 +3,24 @@
   <!-- Sync -->
   <li *ngFor="let c of courses "> 
     {{ c }}
+    
   </li>
-  <!-- <li *ngFor="let course of courses$ | async">
-    {{ course }}
-  </li> -->
 </ul>
 
 <p>{{ courses[0] }}</p>
+
+
+<ul *ngIf = "author$ | async as author">
+  <li>{{ author.name }}</li> <!-- ( author$.name | async ).name avoided -->
+  <li>{{ author.students }}</li>
+  <li>{{ author.isPremium }}</li>
+</ul>
+
+<ul>
+  <li *ngFor="let item of items | async">
+    {{item}} {{ item.key }} 
+    <button (click)="update(item)">Update</button>
+    <button (click)="delete(item)">Delete</button>
+  </li>
+</ul>
+<input type="text" (keyup.enter)="add(course)" #course>
